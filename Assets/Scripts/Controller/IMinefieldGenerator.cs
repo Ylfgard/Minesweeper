@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace Minesweeper.Controller
 {
-    public interface IMinefieldUseCase
+    public interface IMinefieldGenerator
     {
         Task Initialize(IMinefieldConfig config);
     }

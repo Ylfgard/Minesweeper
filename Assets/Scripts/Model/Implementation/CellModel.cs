@@ -7,6 +7,7 @@ namespace Minesweeper.Model.Implementation
         public bool IsMine;
         public bool IsRevealed;
         public bool IsFlagged;
+        public int AdjacentMinesCount;
 
         protected override ICellModel Model => this;
 
@@ -21,7 +22,7 @@ namespace Minesweeper.Model.Implementation
                 Notify();
             }
         }
-        
+
         bool ICellModel.IsRevealed
         {
             get => IsRevealed;
@@ -31,13 +32,23 @@ namespace Minesweeper.Model.Implementation
                 Notify();
             }
         }
-        
+
         bool ICellModel.IsFlagged
         {
             get => IsFlagged;
             set
             {
                 IsFlagged = value;
+                Notify();
+            }
+        }
+
+        int ICellModel.AdjacentMinesCount
+        {
+            get => AdjacentMinesCount;
+            set
+            {
+                AdjacentMinesCount = value;
                 Notify();
             }
         }

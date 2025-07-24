@@ -1,4 +1,4 @@
-﻿namespace Minesweeper.Composition
+﻿namespace Minesweeper.Common
 {
     public interface ILoadingScreen
     {

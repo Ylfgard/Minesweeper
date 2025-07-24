@@ -1,5 +1,4 @@
 using Minesweeper.Common;
-using Minesweeper.Composition;
 using Minesweeper.Controller;
 using Minesweeper.Model;
 using Minesweeper.View;
@@ -16,7 +15,7 @@ namespace Minesweeper
     {
         [Inject] private readonly IGameScreen _gameScreen;
         [Inject] private readonly ILoadingScreen _loadingScreen;
-        [Inject] private readonly IMinefieldUseCase _minefieldUseCase;
+        [Inject] private readonly IMinefieldGenerator _minefieldGenerator;
 
         private void Awake()
         {
@@ -44,7 +43,7 @@ namespace Minesweeper
             var config = configLoadProcess.Result;
             Log($"Minefield config loaded. Field size {config.HorizontalSize}x{config.VerticalSize}. Mines amount: {config.MinesAmount}");
 
-            await _minefieldUseCase.Initialize(config);
+            await _minefieldGenerator.Initialize(config);
             Log("Minefield initialized");
         }
 

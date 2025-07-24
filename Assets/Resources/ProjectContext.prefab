@@ -150,10 +150,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2988652888600786725}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 910c993f74a214742843673213a62f80, type: 3}
+  m_Script: {fileID: 11500000, guid: 355a662b84382b540bac9c4d6501bed5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  loadingScreen: {fileID: 7869837187953416242}
+  loadingScreen: {fileID: 3502996157331377373}
 --- !u!114 &5215602415869759004
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -365,7 +365,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4636868764851424622}
-  - component: {fileID: 7869837187953416242}
+  - component: {fileID: 3502996157331377373}
   m_Layer: 0
   m_Name: LoadingScreen
   m_TagString: Untagged
@@ -389,7 +389,7 @@ Transform:
   - {fileID: 4845486401683183642}
   m_Father: {fileID: 2664202008010370875}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7869837187953416242
+--- !u!114 &3502996157331377373
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -398,7 +398,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7070468218415383946}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd742465f29ac104d8a83cc027d87227, type: 3}
+  m_Script: {fileID: 11500000, guid: 1502dc421e034794082bac097fb13779, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   loadingIcon: {fileID: 8642905433803973869}

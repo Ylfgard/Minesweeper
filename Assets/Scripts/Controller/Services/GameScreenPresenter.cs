@@ -2,27 +2,28 @@
 using Minesweeper.Model;
 using Minesweeper.View;
 using System;
-using UnityEngine;
 
 namespace Minesweeper.Controller.Services
 {
     internal class GameScreenPresenter : IGameScreenPresenter
     {
         private readonly IMinefieldProvider _minefieldProvider;
-        private readonly MinefieldUseCase _minefieldUseCase;
 
         private MinefieldViewModel _minefieldViewModel;
 
-        public int MinesCount => 0;
+        public int MinesCount => _minefieldProvider.LeftMinesCount;
         public IMinefieldViewModel MinefieldModel => _minefieldViewModel ??= CreateViewModel();
 
         public event Action<int> MinesCountChanged;
 
-        public GameScreenPresenter(IMinefieldProvider minefieldProvider, 
-            MinefieldUseCase minefieldUseCase)
+        public GameScreenPresenter(IMinefieldProvider minefieldProvider)
         {
             _minefieldProvider = minefieldProvider;
-            _minefieldUseCase = minefieldUseCase;
+        }
+
+        public void NotifyMinesCountChange()
+        {
+            MinesCountChanged?.Invoke(MinesCount);
         }
 
         private MinefieldViewModel CreateViewModel()
@@ -30,11 +31,6 @@ namespace Minesweeper.Controller.Services
             var model = _minefieldProvider.GetModel();
             var vm = new MinefieldViewModel(model);
             return vm;
-        }
-
-        public int GetAdjacentMinesCount(Vector2Int coordinates)
-        {
-            return _minefieldUseCase.GetAdjacentMinesCount(coordinates);
         }
     }
 }

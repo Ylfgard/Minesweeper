@@ -1,34 +1,33 @@
-﻿using Minesweeper.Model;
-using Minesweeper.View;
+﻿using Minesweeper.View;
 using UnityEngine;
 
 namespace Minesweeper.Controller.Services
 {
     internal class InputPresenter : IInputPresenter
     {
-        private readonly IMinefieldProvider _minefieldProvider;
         private readonly MinefieldUseCase _minefieldUseCase;
+        private readonly RestartUseCase _restartUseCase;
 
-        public InputPresenter(IMinefieldProvider minefieldProvider, 
-            MinefieldUseCase minefieldUseCase)
+        public InputPresenter(MinefieldUseCase minefieldUseCase,
+            RestartUseCase restartUseCase)
         {
-            _minefieldProvider = minefieldProvider;
             _minefieldUseCase = minefieldUseCase;
+            _restartUseCase = restartUseCase;
         }
 
-        public void HandleReveal(Vector2Int coordinates)
+        public async void HandleReveal(Vector2Int coordinates)
         {
-            _minefieldProvider.GetCell(coordinates.x, coordinates.y).IsFlagged = true;
+            await _minefieldUseCase.HandleReveal(coordinates);
         }
 
-        public void HandleFlag(Vector2Int coordinates)
+        public async void HandleFlag(Vector2Int coordinates)
         {
-            _minefieldProvider.GetCell(coordinates.x, coordinates.y).IsRevealed = true;
+            await _minefieldUseCase.HandleFlag(coordinates);
         }
 
-        public void HandleRestartPressed()
+        public async void HandleRestartPressed()
         {
-            _minefieldUseCase.GenerateNewMinefield();
+            await _restartUseCase.RestartGame();
         }
     }
 }

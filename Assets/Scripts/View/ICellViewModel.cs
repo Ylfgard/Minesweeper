@@ -8,5 +8,6 @@ namespace Minesweeper.View
         bool IsMine { get; }
         bool IsRevealed { get; }
         bool IsFlagged { get; }
+        int AdjacentMinesCount { get; }
     }
 }

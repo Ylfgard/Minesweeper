@@ -14,11 +14,11 @@ namespace Minesweeper.View.Ui
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Mouse1))
+            if (Input.GetKeyDown(KeyCode.Mouse0))
                 if (IsClickedOnCell(out var cellView))
                     _inputPresenter.HandleReveal(cellView.Coordinates);
 
-            if (Input.GetKeyDown(KeyCode.Mouse0))
+            if (Input.GetKeyDown(KeyCode.Mouse1))
                 if (IsClickedOnCell(out var cellView))
                     _inputPresenter.HandleFlag(cellView.Coordinates);
 

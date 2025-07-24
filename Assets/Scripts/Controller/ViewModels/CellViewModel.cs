@@ -9,6 +9,7 @@ namespace Minesweeper.Controller.ViewModels
         private bool _isMine;
         private bool _isRevealed;
         private bool _isFlagged;
+        private int _adjacentMinesCount;
 
         protected override ICellViewModel ViewModel => this;
 
@@ -44,6 +45,16 @@ namespace Minesweeper.Controller.ViewModels
             }
         }
 
+        public int AdjacentMinesCount
+        {
+            get => _adjacentMinesCount;
+            set
+            {
+                _adjacentMinesCount = value;
+                Notify();
+            }
+        }
+
         public CellViewModel(ICellModel model)
         {
             Coordinates = model.Coordinates;
@@ -56,6 +67,7 @@ namespace Minesweeper.Controller.ViewModels
             _isMine = model.IsMine;
             _isRevealed = model.IsRevealed;
             _isFlagged = model.IsFlagged;
+            _adjacentMinesCount = model.AdjacentMinesCount;
             Notify();
         }
     }

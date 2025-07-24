@@ -7,9 +7,14 @@ namespace Minesweeper.Controller
     {
         public override void InstallBindings()
         {
-            Container.BindInterfacesAndSelfTo<MinefieldUseCase>().AsSingle();
+            Container.BindInterfacesAndSelfTo<MinefieldGenerator>().AsSingle();
+
             Container.BindInterfacesAndSelfTo<GameScreenPresenter>().AsSingle();
             Container.BindInterfacesAndSelfTo<InputPresenter>().AsSingle();
+
+            Container.BindInterfacesAndSelfTo<RestartUseCase>().AsSingle();
+            Container.BindInterfacesAndSelfTo<MinefieldUseCase>().AsSingle();
+            Container.BindInterfacesAndSelfTo<GameFlowUseCase>().AsSingle();
         }
     }
 }

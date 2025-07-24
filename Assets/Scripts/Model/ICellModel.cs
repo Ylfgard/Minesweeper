@@ -9,5 +9,6 @@ namespace Minesweeper.Model
         bool IsMine { get; set; }
         bool IsRevealed { get; set; }
         bool IsFlagged { get; set; }
+        int AdjacentMinesCount { get; set; }
     }
 }

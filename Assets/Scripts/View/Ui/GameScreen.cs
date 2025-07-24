@@ -7,7 +7,7 @@ namespace Minesweeper.View.Ui
 {
     internal class GameScreen : MonoBehaviour, IGameScreen
     {
-        [Inject] private IGameScreenPresenter _presenter;
+        [Inject] private readonly IGameScreenPresenter _presenter;
 
         [SerializeField] private TextMeshProUGUI _minesCount;
         [SerializeField] private TextMeshProUGUI _timer;

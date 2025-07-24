@@ -7,7 +7,7 @@ namespace Minesweeper.View.Ui
 {
     internal class CellView : MonoBehaviour, IViewObserver<ICellViewModel>
     {
-        [Inject] private readonly IGameScreenPresenter _gameScreenPresenter;
+        [Inject] private readonly IGameScreenPresenter _presenter;
 
         [SerializeField] private Color normalColor = Color.white;
         [SerializeField] private Color revealedColor = Color.gray;
@@ -24,11 +24,6 @@ namespace Minesweeper.View.Ui
         {
             _viewModel = vm;
             _viewModel.Attach(this);
-            if (vm.IsMine == false)
-            {
-                var minesCount = _gameScreenPresenter.GetAdjacentMinesCount(_viewModel.Coordinates);
-                minesCountText.text = minesCount == 0 ? string.Empty : minesCount.ToString();
-            }
             UpdateObserver(vm);
         }
 
@@ -44,10 +39,7 @@ namespace Minesweeper.View.Ui
             mine.SetActive(vm.IsMine && vm.IsRevealed);
             flag.SetActive(vm.IsFlagged);
             if (vm.IsRevealed && vm.IsMine == false)
-            {
-                var minesCount = _gameScreenPresenter.GetAdjacentMinesCount(_viewModel.Coordinates);
-                minesCountText.text = minesCount == 0 ? string.Empty : minesCount.ToString();
-            }
+                minesCountText.text = vm.AdjacentMinesCount == 0 ? string.Empty : vm.AdjacentMinesCount.ToString();
         }
     }
 }

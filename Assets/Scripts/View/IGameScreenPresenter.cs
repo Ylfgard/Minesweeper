@@ -9,7 +9,5 @@ namespace Minesweeper.View
 
         int MinesCount { get; }
         IMinefieldViewModel MinefieldModel { get; }
-
-        int GetAdjacentMinesCount(Vector2Int coordinates);
     }
 }

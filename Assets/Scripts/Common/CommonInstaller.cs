@@ -1,10 +1,10 @@
-﻿using Minesweeper.Composition;
+﻿using Minesweeper.Common;
 using UnityEngine;
 using Zenject;
 
-namespace Minesweeper
+namespace Minesweeper.Common
 {
-    internal class ProjectInstaller : MonoInstaller
+    internal class CommonInstaller : MonoInstaller
     {
         [SerializeField] private LoadingScreen loadingScreen;
 
