@@ -1,0 +1,16 @@
+{
+    "name": "Minesweeper.Model",
+    "rootNamespace": "",
+    "references": [
+        "GUID:c2e83cacb970d994d8ed48335e4d7096"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
