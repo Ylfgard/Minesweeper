@@ -1,6 +1,8 @@
+using Minesweeper.Common;
 using Minesweeper.Composition;
 using Minesweeper.Controller;
 using Minesweeper.Model;
+using Minesweeper.View;
 using System;
 using System.Threading.Tasks;
 using UnityEngine;
@@ -12,6 +14,7 @@ namespace Minesweeper
 {
     public class Bootstrap : MonoBehaviour
     {
+        [Inject] private readonly IGameScreen _gameScreen;
         [Inject] private readonly ILoadingScreen _loadingScreen;
         [Inject] private readonly IMinefieldUseCase _minefieldUseCase;
 
@@ -25,6 +28,7 @@ namespace Minesweeper
             _loadingScreen.Show();
 
             await InitializeMinefield();
+            await _gameScreen.Initialize();
 
             _loadingScreen.Hide();
         }

@@ -2,7 +2,8 @@
     "name": "Minesweeper.Model",
     "rootNamespace": "Minesweeper",
     "references": [
-        "GUID:0d8beb7f090555447a6cf5ce9e54dbb4"
+        "GUID:0d8beb7f090555447a6cf5ce9e54dbb4",
+        "GUID:aa740626564e25e4bbd4a5e654dc12d4"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

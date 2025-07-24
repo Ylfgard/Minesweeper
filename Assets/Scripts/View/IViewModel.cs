@@ -1,9 +1,8 @@
-﻿namespace Minesweeper.View
+﻿using Minesweeper.Common;
+
+namespace Minesweeper.View
 {
-    public interface IViewModel<T>
+    public interface IViewModel<T> : ISubject<T>
     {
-        void Attach(IViewObserver<T> observer);
-        void Detach(IViewObserver<T> observer);
-        void Notify();
     }
 }

@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a32c7fdd0dc990d4ca67b9582888fb2c, type: 3}
   m_Name: MinefieldConfig
   m_EditorClassIdentifier: 
-  horizontalSize: 12
-  verticalSize: 10
-  minesAmount: 15
+  horizontalSize: 7
+  verticalSize: 7
+  minesAmount: 5

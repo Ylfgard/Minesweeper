@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Minesweeper.View
+namespace Minesweeper.View.Ui
 {
     internal class CellImageViewProvider : MonoBehaviour
     {

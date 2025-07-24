@@ -3,7 +3,8 @@
     "rootNamespace": "Minesweeper",
     "references": [
         "Zenject",
-        "Unity.TextMeshPro"
+        "Unity.TextMeshPro",
+        "Minesweeper.Common"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

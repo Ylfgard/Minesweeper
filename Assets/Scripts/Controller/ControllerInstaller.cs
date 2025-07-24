@@ -8,6 +8,7 @@ namespace Minesweeper.Controller
         public override void InstallBindings()
         {
             Container.BindInterfacesAndSelfTo<MinefieldUseCase>().AsSingle();
+            Container.BindInterfacesAndSelfTo<GameScreenPresenter>().AsSingle();
         }
     }
 }

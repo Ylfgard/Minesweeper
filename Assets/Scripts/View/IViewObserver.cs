@@ -1,7 +1,8 @@
-﻿namespace Minesweeper.View
+﻿using Minesweeper.Common;
+
+namespace Minesweeper.View
 {
-    public interface IViewObserver<T>
+    public interface IViewObserver<T> : IObserver<T>
     {
-        void UpdateView(T viewModel);
     }
 }
