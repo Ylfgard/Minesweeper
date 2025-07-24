@@ -2,7 +2,8 @@
     "name": "Minesweeper.View",
     "rootNamespace": "Minesweeper",
     "references": [
-        "Zenject"
+        "Zenject",
+        "Unity.TextMeshPro"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

@@ -23,7 +23,7 @@ namespace Minesweeper.Model.Implementation
         {
             if (_model == null)
                 throw new NullReferenceException("Minefield model is not created");
-            return _model.Cells[x, y];
+            return _model.Cells[y, x];
         }
     }
 }

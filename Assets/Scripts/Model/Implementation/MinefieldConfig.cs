@@ -5,8 +5,8 @@ namespace Minesweeper.Model.Implementation
     [CreateAssetMenu(fileName = "MinefieldConfig", menuName = "Configs/MinefieldConfig", order = 1)]
     internal class MinefieldConfig : ScriptableObject, IMinefieldConfig
     {
-        [SerializeField][Range(1, 30)] private int horizontalSize;
-        [SerializeField][Range(1, 16)] private int verticalSize;
+        [SerializeField][Range(7, 30)] private int horizontalSize;
+        [SerializeField][Range(7, 16)] private int verticalSize;
         [SerializeField][Range(1, 99)] private int minesAmount;
 
         public int HorizontalSize => horizontalSize;

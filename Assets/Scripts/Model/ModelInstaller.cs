@@ -5,7 +5,7 @@ using Zenject;
 [assembly: InternalsVisibleTo("Minesweeper.Composition")]
 namespace Minesweeper.Model
 {
-    internal class ModelInstaller : Installer
+    internal class ModelInstaller : MonoInstaller
     {
         public override void InstallBindings()
         {
