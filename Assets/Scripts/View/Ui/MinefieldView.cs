@@ -41,8 +41,8 @@ namespace Minesweeper.View.Ui
                 Destroy(cell.gameObject);
             _cells.Clear();
 
-            var vertical = vm.Cells.GetLength(0);
-            var horizontal = vm.Cells.GetLength(1);
+            var vertical = vm.VerticalSize;
+            var horizontal = vm.HorizontalSize;
             layoutGroup.constraintCount = vertical;
             for (int y = 0; y < vertical; y++)
             {

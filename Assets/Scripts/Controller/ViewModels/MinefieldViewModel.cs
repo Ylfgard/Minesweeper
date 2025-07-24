@@ -11,6 +11,8 @@ namespace Minesweeper.Controller.ViewModels
 
         private CellViewModel[,] _cells;
 
+        public int HorizontalSize => Cells.GetLength(1);
+        public int VerticalSize => Cells.GetLength(0);
         protected override IMinefieldViewModel ViewModel => this;
 
         public CellViewModel[,] Cells
@@ -33,8 +35,8 @@ namespace Minesweeper.Controller.ViewModels
 
         public override void UpdateObserver(IMinefieldModel model)
         {
-            var vertical = model.Cells.GetLength(0);
-            var horizontal = model.Cells.GetLength(1);
+            var vertical = model.VerticalSize;
+            var horizontal = model.HorizontalSize;
             _cells = new CellViewModel[vertical, horizontal];
             for (int y = 0; y < vertical; y++)
             {

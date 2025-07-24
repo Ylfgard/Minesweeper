@@ -7,9 +7,13 @@ namespace Minesweeper.View.Ui
 {
     internal class CellView : MonoBehaviour, IViewObserver<ICellViewModel>
     {
-        [Inject] private readonly CellImageViewProvider _cellImageViewProvider;
+        [Inject] private readonly IGameScreenPresenter _gameScreenPresenter;
 
-        [SerializeField] private Image icon;
+        [SerializeField] private Color normalColor = Color.white;
+        [SerializeField] private Color revealedColor = Color.gray;
+        [SerializeField] private Image background;
+        [SerializeField] private GameObject mine;
+        [SerializeField] private GameObject flag;
         [SerializeField] private TextMeshProUGUI minesCountText;
 
         private ICellViewModel _viewModel;
@@ -18,6 +22,11 @@ namespace Minesweeper.View.Ui
         {
             _viewModel = vm;
             _viewModel.Attach(this);
+            if (vm.IsMine == false)
+            {
+                var minesCount = _gameScreenPresenter.GetAdjacentMinesCount(_viewModel.Coordinates);
+                minesCountText.text = minesCount == 0 ? string.Empty : minesCount.ToString();
+            }
             UpdateObserver(vm);
         }
 
@@ -28,7 +37,10 @@ namespace Minesweeper.View.Ui
 
         public void UpdateObserver(ICellViewModel vm)
         {
-
+            background.color = vm.IsRevealed ? revealedColor : normalColor;
+            minesCountText.gameObject.SetActive(vm.IsRevealed);
+            mine.SetActive(vm.IsMine && vm.IsRevealed);
+            flag.SetActive(vm.IsFlagged);
         }
     }
 }

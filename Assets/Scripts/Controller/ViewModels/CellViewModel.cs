@@ -12,7 +12,7 @@ namespace Minesweeper.Controller.ViewModels
 
         protected override ICellViewModel ViewModel => this;
 
-        public Vector2 Coordinates { get; }
+        public Vector2Int Coordinates { get; }
 
         public bool IsMine
         {

@@ -1,4 +1,5 @@
 ﻿using System;
+using UnityEngine;
 
 namespace Minesweeper.View
 {
@@ -8,5 +9,7 @@ namespace Minesweeper.View
 
         int MinesCount { get; }
         IMinefieldViewModel MinefieldModel { get; }
+
+        int GetAdjacentMinesCount(Vector2Int coordinates);
     }
 }

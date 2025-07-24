@@ -5,7 +5,7 @@ namespace Minesweeper.Model
 {
     public interface ICellModel : IModel<ICellModel>
     {
-        Vector2 Coordinates { get; }
+        Vector2Int Coordinates { get; }
         bool IsMine { get; set; }
         bool IsRevealed { get; set; }
         bool IsFlagged { get; set; }

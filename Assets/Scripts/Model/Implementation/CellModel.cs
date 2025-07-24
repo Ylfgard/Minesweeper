@@ -8,7 +8,7 @@ namespace Minesweeper.Model.Implementation
         public bool IsRevealed;
         public bool IsFlagged;
 
-        public Vector2 Coordinates { get; }
+        public Vector2Int Coordinates { get; }
 
         protected override ICellModel Model => this;
 
@@ -30,7 +30,7 @@ namespace Minesweeper.Model.Implementation
             set => IsFlagged = value;
         }
 
-        public CellModel(Vector2 coordinates)
+        public CellModel(Vector2Int coordinates)
         {
             Coordinates = coordinates;
         }

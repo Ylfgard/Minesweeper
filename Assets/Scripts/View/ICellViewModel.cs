@@ -4,7 +4,7 @@ namespace Minesweeper.View
 {
     public interface ICellViewModel : IViewModel<ICellViewModel>
     {
-        Vector2 Coordinates { get; }
+        Vector2Int Coordinates { get; }
         bool IsMine { get; }
         bool IsRevealed { get; }
         bool IsFlagged { get; }
