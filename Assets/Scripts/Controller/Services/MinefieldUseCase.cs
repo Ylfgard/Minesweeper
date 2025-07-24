@@ -30,10 +30,10 @@ namespace Minesweeper.Controller.Services
             for (int y = 0; y < config.VerticalSize; y++)
             {
                 for (int x = 0; x < config.HorizontalSize; x++)
-                    sb.Append(model.Cells[x, y].IsMine ? "|*|" : "| |");
+                    sb.Append(model.Cells[x, y].IsMine ? '*' : '0');
                 sb.Append("\n");
             }
-            Debug.Log($"Minefield: {sb.ToString()}");
+            Debug.Log($"Generated minefield \n{sb.ToString()}");
 
             return Task.CompletedTask;
         }

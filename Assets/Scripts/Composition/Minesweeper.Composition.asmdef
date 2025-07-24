@@ -1,8 +1,11 @@
 {
-    "name": "Minesweeper.Model",
+    "name": "Minesweeper.Composition",
     "rootNamespace": "Minesweeper",
     "references": [
-        "GUID:0d8beb7f090555447a6cf5ce9e54dbb4"
+        "GUID:0d8beb7f090555447a6cf5ce9e54dbb4",
+        "GUID:b53bd7713a484e54dbc9dce394977fe6",
+        "GUID:e60c35993d6af214394df057e7955509",
+        "GUID:c2e83cacb970d994d8ed48335e4d7096"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

@@ -1,3 +1,4 @@
+using Minesweeper.Composition;
 using Minesweeper.Controller;
 using Minesweeper.Model;
 using System;
@@ -7,7 +8,7 @@ using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using Zenject;
 
-namespace Minesweeper.Composition
+namespace Minesweeper
 {
     public class Bootstrap : MonoBehaviour
     {
