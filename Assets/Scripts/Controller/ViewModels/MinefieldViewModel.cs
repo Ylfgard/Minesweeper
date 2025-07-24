@@ -45,7 +45,6 @@ namespace Minesweeper.Controller.ViewModels
                     _cells[y, x] = new CellViewModel(model.Cells[y, x]);
                 }
             }
-
             Notify();
         }
     }

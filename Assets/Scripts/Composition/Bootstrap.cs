@@ -44,7 +44,7 @@ namespace Minesweeper
             var config = configLoadProcess.Result;
             Log($"Minefield config loaded. Field size {config.HorizontalSize}x{config.VerticalSize}. Mines amount: {config.MinesAmount}");
 
-            await _minefieldUseCase.GenerateMinefield(config);
+            await _minefieldUseCase.Initialize(config);
             Log("Minefield initialized");
         }
 

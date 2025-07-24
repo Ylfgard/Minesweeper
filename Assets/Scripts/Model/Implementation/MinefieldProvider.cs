@@ -1,4 +1,5 @@
 ﻿using System;
+using UnityEngine;
 
 namespace Minesweeper.Model.Implementation
 {
@@ -6,9 +7,16 @@ namespace Minesweeper.Model.Implementation
     {
         private MinefieldModel _model;
 
-        public IMinefieldModel CreateNewMinefieldModel(int horizontalSize, int verticalSize)
+        public IMinefieldModel CreateNewMinefield(int horizontalSize, int verticalSize)
         {
-            _model = new MinefieldModel(horizontalSize, verticalSize);
+            _model ??= new MinefieldModel();
+
+            var cells = new CellModel[verticalSize, horizontalSize];
+            for (int y = 0; y < verticalSize; y++)
+                for (int x = 0; x < horizontalSize; x++)
+                    cells[y, x] = new CellModel(new Vector2Int(x, y));
+
+            _model.Cells = cells;
             return _model;
         }
 

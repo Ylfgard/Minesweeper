@@ -10,16 +10,24 @@ namespace Minesweeper.Controller.Services
     {
         private readonly IMinefieldProvider _minefieldProvider;
 
+        private IMinefieldConfig _config;
+
         public MinefieldUseCase(IMinefieldProvider minefieldProvider)
         {
             _minefieldProvider = minefieldProvider;
         }
 
-        public Task GenerateMinefield(IMinefieldConfig config)
+        public async Task Initialize(IMinefieldConfig config)
         {
-            var model = _minefieldProvider.CreateNewMinefieldModel(config.HorizontalSize, config.VerticalSize);
+            _config = config;
+            await GenerateNewMinefield();
+        }
+
+        public Task GenerateNewMinefield()
+        {
+            var model = _minefieldProvider.CreateNewMinefield(_config.HorizontalSize, _config.VerticalSize);
             var cells = model.Cells.Cast<ICellModel>().ToList();
-            for (int i = 0; i < config.MinesAmount; i++)
+            for (int i = 0; i < _config.MinesAmount; i++)
             {
                 var cell = cells[Random.Range(0, cells.Count)];
                 cell.IsMine = true;
@@ -27,9 +35,9 @@ namespace Minesweeper.Controller.Services
             }
 
             var sb = new StringBuilder();
-            for (int y = 0; y < config.VerticalSize; y++)
+            for (int y = 0; y < _config.VerticalSize; y++)
             {
-                for (int x = 0; x < config.HorizontalSize; x++)
+                for (int x = 0; x < _config.HorizontalSize; x++)
                     sb.Append(model.Cells[y, x].IsMine ? '*' : '0');
                 sb.Append("\n");
             }

@@ -9,6 +9,7 @@ namespace Minesweeper.Controller
         {
             Container.BindInterfacesAndSelfTo<MinefieldUseCase>().AsSingle();
             Container.BindInterfacesAndSelfTo<GameScreenPresenter>().AsSingle();
+            Container.BindInterfacesAndSelfTo<InputPresenter>().AsSingle();
         }
     }
 }

@@ -9,7 +9,7 @@ namespace Minesweeper.Controller.Services
     internal class GameScreenPresenter : IGameScreenPresenter
     {
         private readonly IMinefieldProvider _minefieldProvider;
-        private readonly IMinefieldUseCase _minefieldUseCase;
+        private readonly MinefieldUseCase _minefieldUseCase;
 
         private MinefieldViewModel _minefieldViewModel;
 
@@ -19,7 +19,7 @@ namespace Minesweeper.Controller.Services
         public event Action<int> MinesCountChanged;
 
         public GameScreenPresenter(IMinefieldProvider minefieldProvider, 
-            IMinefieldUseCase minefieldUseCase)
+            MinefieldUseCase minefieldUseCase)
         {
             _minefieldProvider = minefieldProvider;
             _minefieldUseCase = minefieldUseCase;

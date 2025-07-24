@@ -56,6 +56,7 @@ namespace Minesweeper.Controller.ViewModels
             _isMine = model.IsMine;
             _isRevealed = model.IsRevealed;
             _isFlagged = model.IsFlagged;
+            Notify();
         }
     }
 }

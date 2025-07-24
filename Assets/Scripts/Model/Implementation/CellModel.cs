@@ -8,26 +8,38 @@ namespace Minesweeper.Model.Implementation
         public bool IsRevealed;
         public bool IsFlagged;
 
-        public Vector2Int Coordinates { get; }
-
         protected override ICellModel Model => this;
+
+        public Vector2Int Coordinates { get; }
 
         bool ICellModel.IsMine
         {
             get => IsMine;
-            set => IsMine = value;
+            set
+            {
+                IsMine = value;
+                Notify();
+            }
         }
         
         bool ICellModel.IsRevealed
         {
             get => IsRevealed;
-            set => IsRevealed = value;
+            set
+            {
+                IsRevealed = value;
+                Notify();
+            }
         }
         
         bool ICellModel.IsFlagged
         {
             get => IsFlagged;
-            set => IsFlagged = value;
+            set
+            {
+                IsFlagged = value;
+                Notify();
+            }
         }
 
         public CellModel(Vector2Int coordinates)

@@ -16,6 +16,8 @@ namespace Minesweeper.View.Ui
         [SerializeField] private GameObject flag;
         [SerializeField] private TextMeshProUGUI minesCountText;
 
+        public Vector2Int Coordinates => _viewModel?.Coordinates ?? Vector2Int.zero;
+
         private ICellViewModel _viewModel;
 
         public void SetViewModel(ICellViewModel vm)
@@ -41,6 +43,11 @@ namespace Minesweeper.View.Ui
             minesCountText.gameObject.SetActive(vm.IsRevealed);
             mine.SetActive(vm.IsMine && vm.IsRevealed);
             flag.SetActive(vm.IsFlagged);
+            if (vm.IsRevealed && vm.IsMine == false)
+            {
+                var minesCount = _gameScreenPresenter.GetAdjacentMinesCount(_viewModel.Coordinates);
+                minesCountText.text = minesCount == 0 ? string.Empty : minesCount.ToString();
+            }
         }
     }
 }
