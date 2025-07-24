@@ -1,11 +1,9 @@
-using Minesweeper.Controller.Api;
-using System.Runtime.CompilerServices;
 using UnityEngine;
 
-namespace Minesweeper.Model
+namespace Minesweeper.Model.Implementation
 {
-    [CreateAssetMenu(fileName = "MineFieldConfig", menuName = "Configs/MineFieldConfig", order = 1)]
-    internal class MineFieldConfig : ScriptableObject, IMineFieldConfig
+    [CreateAssetMenu(fileName = "MinefieldConfig", menuName = "Configs/MinefieldConfig", order = 1)]
+    internal class MinefieldConfig : ScriptableObject, IMinefieldConfig
     {
         [SerializeField][Range(1, 30)] private int horizontalSize;
         [SerializeField][Range(1, 16)] private int verticalSize;

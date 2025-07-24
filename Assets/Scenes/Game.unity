@@ -285,7 +285,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66f52a35075da4a42998944f8c81f834, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mineFieldConfig: {fileID: 11400000, guid: 478d967f175ab244a918ce79e69d5b97, type: 2}
 --- !u!4 &1680820022
 Transform:
   m_ObjectHideFlags: 0

@@ -1,6 +1,6 @@
-﻿namespace Minesweeper.Controller.Api
+﻿namespace Minesweeper.Model
 {
-    public interface IMineFieldConfig
+    public interface IMinefieldConfig
     {
         int HorizontalSize { get; }
         int VerticalSize { get; }

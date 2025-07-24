@@ -1,9 +1,8 @@
 {
     "name": "Minesweeper.View",
-    "rootNamespace": "",
+    "rootNamespace": "Minesweeper",
     "references": [
-        "Zenject",
-        "Minesweeper.Controller"
+        "Zenject"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

@@ -1,6 +1,6 @@
 ﻿namespace Minesweeper.Controller.Api
 {
-    public interface IMineFieldPresenter
+    public interface IMinefieldPresenter
     {
     }
 }

@@ -1,11 +1,6 @@
-using Minesweeper.Controller.Api;
-using UnityEngine;
-using Zenject;
-
-namespace Minesweeper.View
+﻿namespace Minesweeper.View.Assets.Scripts.View
 {
-    public class MineFieldView : MonoBehaviour
+    internal class MinefieldView
     {
-        [Inject] private readonly IMineFieldPresenter _mineFieldPresenter;
     }
 }
