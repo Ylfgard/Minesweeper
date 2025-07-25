@@ -1,4 +1,5 @@
 ﻿using Minesweeper.View;
+using System;
 using UnityEngine;
 
 namespace Minesweeper.Controller.Services
@@ -6,18 +7,35 @@ namespace Minesweeper.Controller.Services
     internal class InputPresenter : IInputPresenter
     {
         private readonly MinefieldUseCase _minefieldUseCase;
-        private readonly RestartUseCase _restartUseCase;
+        private readonly GameFlowUseCase _gameFlowUseCase;
+        private readonly GameFlowPresenter _gameFlowPresenter;
+
+        private bool _isFirstClick = true;
 
         public InputPresenter(MinefieldUseCase minefieldUseCase,
-            RestartUseCase restartUseCase)
+            GameFlowUseCase gameFlowUseCase,
+            GameFlowPresenter gameFlowPresenter)
         {
             _minefieldUseCase = minefieldUseCase;
-            _restartUseCase = restartUseCase;
+            _gameFlowUseCase = gameFlowUseCase;
+            _gameFlowPresenter = gameFlowPresenter;
+
+            _gameFlowPresenter.GameStarted += OnGameStarted;
+        }
+
+        public void Dispose()
+        {
+            _gameFlowPresenter.GameStarted -= OnGameStarted;
         }
 
         public async void HandleReveal(Vector2Int coordinates)
         {
-            await _minefieldUseCase.HandleReveal(coordinates);
+            await _minefieldUseCase.HandleReveal(coordinates, _isFirstClick);
+            if (_isFirstClick)
+            {
+                _gameFlowPresenter.NotifyFirstCellClick();
+                _isFirstClick = false;
+            }
         }
 
         public async void HandleFlag(Vector2Int coordinates)
@@ -25,9 +43,14 @@ namespace Minesweeper.Controller.Services
             await _minefieldUseCase.HandleFlag(coordinates);
         }
 
-        public async void HandleRestartPressed()
+        public async void RestartGame()
         {
-            await _restartUseCase.RestartGame();
+            await _gameFlowUseCase.RestartGame();
+        }
+
+        public void OnGameStarted()
+        {
+            _isFirstClick = true;
         }
     }
 }

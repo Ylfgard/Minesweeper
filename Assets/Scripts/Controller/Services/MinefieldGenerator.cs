@@ -51,18 +51,16 @@ namespace Minesweeper.Controller.Services
             return Task.CompletedTask;
         }
 
-        private int GetAdjacentMinesCount(Vector2Int coordinates, IMinefieldModel model)
+        public int GetAdjacentMinesCount(Vector2Int coordinates, IMinefieldModel model)
         {
-            int yMin = Mathf.Clamp(coordinates.y - 1, 0, model.VerticalSize - 1);
-            int yMax = Mathf.Clamp(coordinates.y + 1, 0, model.VerticalSize - 1);
-            int xMin = Mathf.Clamp(coordinates.x - 1, 0, model.HorizontalSize - 1);
-            int xMax = Mathf.Clamp(coordinates.x + 1, 0, model.HorizontalSize - 1);
-
             int result = 0;
-            for (var y = yMin; y <= yMax; y++)
-                for (var x = xMin; x <= xMax; x++)
-                    if (model.Cells[y, x].IsMine)
-                        result++;
+            void HandleCall(ICellModel cell)
+            {
+                if (cell.IsMine)
+                    result++;
+            }
+
+            model.ForEachAdjacentCell(coordinates, HandleCall);
             return result;
         }
     }

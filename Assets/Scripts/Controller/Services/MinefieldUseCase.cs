@@ -1,6 +1,6 @@
 ﻿using Minesweeper.Model;
-using System;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
@@ -11,17 +11,20 @@ namespace Minesweeper.Controller.Services
         private readonly IMinefieldProvider _minefieldProvider;
         private readonly GameScreenPresenter _gameScreenPresenter;
         private readonly GameFlowUseCase _gameFlowUseCase;
+        private readonly MinefieldGenerator _minefieldGenerator;
 
         public MinefieldUseCase(IMinefieldProvider minefieldProvider,
             GameScreenPresenter gameScreenPresenter,
-            GameFlowUseCase gameFlowUseCase)
+            GameFlowUseCase gameFlowUseCase,
+            MinefieldGenerator minefieldGenerator)
         {
             _minefieldProvider = minefieldProvider;
             _gameScreenPresenter = gameScreenPresenter;
             _gameFlowUseCase = gameFlowUseCase;
+            _minefieldGenerator = minefieldGenerator;
         }
 
-        public async Task HandleReveal(Vector2Int coordinates)
+        public async Task HandleReveal(Vector2Int coordinates, bool isFirstClick)
         {
             var cell = _minefieldProvider.GetCell(coordinates.x, coordinates.y);
             if (cell.IsRevealed)
@@ -29,9 +32,16 @@ namespace Minesweeper.Controller.Services
 
             if (cell.IsMine)
             {
-                cell.IsRevealed = true;
-                await _gameFlowUseCase.LoseGame();
-                return;
+                if (isFirstClick)
+                {
+                    RandomizeMine(cell);
+                }
+                else
+                {
+                    cell.IsRevealed = true;
+                    await _gameFlowUseCase.GameLose();
+                    return;
+                }
             }
 
             var model = _minefieldProvider.GetModel();
@@ -52,35 +62,52 @@ namespace Minesweeper.Controller.Services
             return Task.CompletedTask;
         }
 
+        private void RandomizeMine(ICellModel cell)
+        {
+            cell.IsMine = false;
+            var emptyCells = _minefieldProvider.GetHidden().Where(c => c.IsMine == false).ToArray();
+            var randomCell = emptyCells[Random.Range(0, emptyCells.Length)];
+            randomCell.IsMine = true;
+            var model = _minefieldProvider.GetModel();
+            RecalculateAdjacentMines(cell.Coordinates, model);
+            RecalculateAdjacentMines(randomCell.Coordinates, model);
+
+            var sb = new StringBuilder();
+            for (int y = 0; y < model.VerticalSize; y++)
+            {
+                for (int x = 0; x < model.HorizontalSize; x++)
+                {
+                    sb.Append(model.Cells[y, x].IsMine ? '*' : model.Cells[y, x].AdjacentMinesCount.ToString());
+                    sb.Append(' ');
+                }
+                sb.Append("\n");
+            }
+            Debug.Log($"Minefield after mine randomize \n{sb.ToString()}");
+        }
+
+        private void RecalculateAdjacentMines(Vector2Int coordinates, IMinefieldModel model)
+        {
+            void HandleCall(ICellModel cell)
+            {
+                cell.AdjacentMinesCount = _minefieldGenerator.GetAdjacentMinesCount(cell.Coordinates, model);
+            }
+
+            model.ForEachAdjacentCell(coordinates, HandleCall);
+        }
+
         private void RevealCellAndAdjacent(ICellModel cell, IMinefieldModel model)
         {
-            var coordinates = cell.Coordinates;
             cell.IsRevealed = true;
             if (cell.AdjacentMinesCount > 0)
                 return;
 
-            int yMin = Mathf.Clamp(coordinates.y - 1, 0, model.VerticalSize - 1);
-            int yMax = Mathf.Clamp(coordinates.y + 1, 0, model.VerticalSize - 1);
-            int xMin = Mathf.Clamp(coordinates.x - 1, 0, model.HorizontalSize - 1);
-            int xMax = Mathf.Clamp(coordinates.x + 1, 0, model.HorizontalSize - 1);
+            void HandleCall(ICellModel cell)
+            {
+                if (cell.IsRevealed == false)
+                    RevealCellAndAdjacent(cell, model);
+            }
 
-            for (var y = yMin; y <= yMax; y++)
-                for (var x = xMin; x <= xMax; x++)
-                    if (model.Cells[y, x].IsRevealed == false)
-                        RevealCellAndAdjacent(model.Cells[y, x], model);
-        }
-    }
-
-    internal class GameFlowUseCase
-    {
-        public Task LoseGame()
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task WinGame()
-        {
-            throw new NotImplementedException();
+            model.ForEachAdjacentCell(cell.Coordinates, HandleCall);
         }
     }
 }

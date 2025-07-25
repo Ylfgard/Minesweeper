@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: MinefieldConfig
   m_EditorClassIdentifier: 
   horizontalSize: 10
-  verticalSize: 7
-  minesAmount: 15
+  verticalSize: 10
+  minesAmount: 10

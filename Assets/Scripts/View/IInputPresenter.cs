@@ -1,11 +1,12 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Minesweeper.View
 {
-    public interface IInputPresenter
+    public interface IInputPresenter : IDisposable
     {
         void HandleFlag(Vector2Int coordinates);
-        void HandleRestartPressed();
+        void RestartGame();
         void HandleReveal(Vector2Int coordinates);
     }
 }

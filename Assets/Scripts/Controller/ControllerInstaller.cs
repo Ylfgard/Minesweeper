@@ -11,8 +11,8 @@ namespace Minesweeper.Controller
 
             Container.BindInterfacesAndSelfTo<GameScreenPresenter>().AsSingle();
             Container.BindInterfacesAndSelfTo<InputPresenter>().AsSingle();
+            Container.BindInterfacesAndSelfTo<GameFlowPresenter>().AsSingle();
 
-            Container.BindInterfacesAndSelfTo<RestartUseCase>().AsSingle();
             Container.BindInterfacesAndSelfTo<MinefieldUseCase>().AsSingle();
             Container.BindInterfacesAndSelfTo<GameFlowUseCase>().AsSingle();
         }
